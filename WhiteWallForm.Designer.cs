@@ -56,44 +56,20 @@ namespace WhiteWall
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.statusTbx = new System.Windows.Forms.TextBox();
 			this.toggleBtn = new System.Windows.Forms.Button();
-			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.AutoSize = true;
-			this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.groupBox1.Controls.Add(this.statusTbx);
-			this.groupBox1.Controls.Add(this.toggleBtn);
-			this.groupBox1.Location = new System.Drawing.Point(12, 12);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(193, 62);
-			this.groupBox1.TabIndex = 0;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Whitelist Toggle";
-			this.groupBox1.Enter += new System.EventHandler(this.GroupBox1Enter);
-			// 
-			// statusTbx
-			// 
-			this.statusTbx.BackColor = System.Drawing.Color.Red;
-			this.statusTbx.Location = new System.Drawing.Point(106, 22);
-			this.statusTbx.Name = "statusTbx";
-			this.statusTbx.Size = new System.Drawing.Size(81, 20);
-			this.statusTbx.TabIndex = 1;
-			this.statusTbx.Text = "OFF";
-			this.statusTbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// toggleBtn
 			// 
-			this.toggleBtn.Location = new System.Drawing.Point(7, 20);
+			this.toggleBtn.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toggleBtn.Location = new System.Drawing.Point(32, 32);
+			this.toggleBtn.Margin = new System.Windows.Forms.Padding(32);
 			this.toggleBtn.Name = "toggleBtn";
-			this.toggleBtn.Size = new System.Drawing.Size(92, 23);
+			this.toggleBtn.Size = new System.Drawing.Size(128, 32);
 			this.toggleBtn.TabIndex = 0;
-			this.toggleBtn.Text = "ON/OFF";
-			this.toggleBtn.UseVisualStyleBackColor = true;
+			this.toggleBtn.Text = mode.ToUpper() == "OFF" ? "OFF" : "ON";
+			this.toggleBtn.BackColor = mode.ToUpper() == "OFF" ? System.Drawing.Color.Red : System.Drawing.Color.GreenYellow;
+			this.toggleBtn.UseVisualStyleBackColor = false;
 			this.toggleBtn.Click += new System.EventHandler(this.ToggleClick);
 			// 
 			// MainForm
@@ -102,20 +78,15 @@ namespace WhiteWall
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.ClientSize = new System.Drawing.Size(221, 89);
-			this.Controls.Add(this.groupBox1);
+			this.ClientSize = new System.Drawing.Size(220, 109);
+			this.Controls.Add(this.toggleBtn);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "WhiteWall";
 			this.Load += new System.EventHandler(this.MainFormLoad);
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 		}
 		private bool toggle;
-		private System.Windows.Forms.TextBox statusTbx;
-		private System.Windows.Forms.GroupBox groupBox1;
 		
 		void GroupBox1Enter(object sender, System.EventArgs e)
 		{
@@ -127,14 +98,14 @@ namespace WhiteWall
 			toggle = toggle == false ? true : false;
 			if(toggle)
 			{
-				statusTbx.Text = "ON";
-				statusTbx.BackColor = System.Drawing.Color.GreenYellow;
+				toggleBtn.Text = "ON";
+				toggleBtn.BackColor = System.Drawing.Color.GreenYellow;
 				AllowEntry = false;
 			}
 			else
 			{
-				statusTbx.Text = "OFF";
-				statusTbx.BackColor = System.Drawing.Color.Red;
+				toggleBtn.Text = "OFF";
+				toggleBtn.BackColor = System.Drawing.Color.Red;
 				AllowEntry = true;
 			}
 		}

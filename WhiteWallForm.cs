@@ -40,12 +40,15 @@ namespace WhiteWall
 		private static BattlEyeClient client;
 		private static BattlEyeLoginCredentials creds;
 		private static MySqlConnectionStringBuilder cs;
+		private static string mode;
 		private Thread beloopThread;
 		public MainForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
+			mode = ConfigurationManager.AppSettings["mode"];
+			
 			InitializeComponent();
 			
 			creds = new BattlEyeLoginCredentials();
